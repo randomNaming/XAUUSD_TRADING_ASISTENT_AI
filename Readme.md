@@ -1,7 +1,8 @@
 # XAUUSD AI Trading Bot 🤖
 
 An advanced algorithmic trading system for XAUUSD (Gold) using multi-timeframe analysis and AI-powered decision making. 65% of accuracy for profitable trades tested on real account
-
+UPDATED VERSION: https://github.com/codebytemirza/xauusd_trading_deepagent_using_langchain.git
+AI Automation and Agent Developer Service Available
 ## Features 🌟
 
 - Multi-timeframe Technical Analysis (D1, H4, H1, M30, M15, M5)
