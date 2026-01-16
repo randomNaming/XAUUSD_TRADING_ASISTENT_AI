@@ -1,0 +1,9 @@
+# XAUUSD AI 交易助手 - 依赖包
+streamlit>=1.30.0
+MetaTrader5>=5.0.45
+pandas>=2.0.0
+numpy>=1.24.0
+langchain-openai>=0.0.5
+langchain-core>=0.1.0
+openai>=1.0.0
+pyinstaller>=6.3.0
