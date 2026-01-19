@@ -32,7 +32,8 @@ venv.bak/
 
 # PyInstaller
 *.manifest
-*.spec
+# 保留 .spec 文件（打包配置需要版本控制）
+# *.spec
 
 # 单元测试 / 覆盖率报告
 htmlcov/
@@ -129,7 +130,9 @@ logs/
 *~
 
 # Streamlit
-.streamlit/
+# 保留 .streamlit 目录结构，但忽略敏感文件
+.streamlit/secrets.toml
+.streamlit/config.toml
 
 # 数据文件（根据项目需要调整）
 # *.csv

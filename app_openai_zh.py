@@ -1,6 +1,7 @@
 import streamlit as st
 from datetime import datetime
 import time
+import os
 
 from XAUSD_AI_openai_zh import XAUUSDTradingBot
 
@@ -21,7 +22,40 @@ section[data-testid="stSidebar"] * { color:#ffffff !important; }
 
 st.title("🤖 XAUUSD 当日行情分析（含入场点位）")
 
-bot = XAUUSDTradingBot(api_key=st.secrets["OPENAI_API_KEY"])
+# 优先从环境变量读取API密钥，其次从secrets读取
+def get_api_key():
+    """获取OpenAI API密钥，优先级：环境变量 > secrets文件"""
+    # 1. 尝试从环境变量获取
+    api_key = os.environ.get('OPENAI_API_KEY', '').strip()
+    if api_key:
+        return api_key
+    
+    # 2. 尝试从secrets获取
+    try:
+        api_key = st.secrets.get("OPENAI_API_KEY", "").strip()
+        if api_key:
+            return api_key
+    except Exception:
+        pass
+    
+    # 3. 无法获取API密钥
+    return None
+
+api_key = get_api_key()
+if not api_key:
+    st.error("""
+    ❌ **缺少 OpenAI API Key！**
+    
+    请按以下步骤配置：
+    1. 打开程序目录下的 `config.bat` 文件
+    2. 在 `OPENAI_API_KEY` 后填写您的 API Key
+    3. 保存后重新启动程序
+    
+    如果您还没有 API Key，请访问：https://platform.openai.com/api-keys
+    """)
+    st.stop()
+
+bot = XAUUSDTradingBot(api_key=api_key)
 
 
 def display_market_data(data_str, timeframe):
